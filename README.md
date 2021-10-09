@@ -1,1 +1,1 @@
-# Trends-in-Data-Science
+# Trends in Data Science
