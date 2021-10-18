@@ -1,3 +1,6 @@
 # Trends in Data Science
 
-Readme
+Packages to install:
+```
+pip install Flask-Migrate
+```
