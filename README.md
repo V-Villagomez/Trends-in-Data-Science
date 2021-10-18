@@ -1,3 +1,8 @@
 # Trends in Data Science
 
-Readme
+#### Packages to install:
+```
+pip install Flask-Migrate
+pip install Flask-Script
+pip install Flask-SQLAlchemy
+```
