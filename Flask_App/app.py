@@ -9,12 +9,14 @@ from flask import (
     redirect)
 import pandas as pd
 from sqlalchemy import create_engine
+from flask_sqlalchemy import SQLAlchemy
+from config import db_url
 
 # Create an app
 app = Flask(__name__)
 
 # Use flask_pymongo to set up mongo connection
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://dauzivavcrjsot:2eb6527fd42b15514d612ed150b329e9601d0d8fbad490d583edc21e8365d877@ec2-3-226-165-74.compute-1.amazonaws.com:5432/dfh9j8gfut2e72"
+app.config["SQLALCHEMY_DATABASE_URI"] = db_url
 
 # Define a base "/" route with the @app.route() decorator
 #@app.route("/")
