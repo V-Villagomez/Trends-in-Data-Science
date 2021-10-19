@@ -9,7 +9,7 @@ from flask import (
     redirect)
 import pandas as pd
 from sqlalchemy import create_engine
-#from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 #from config import db_url
 
 # Create an app
