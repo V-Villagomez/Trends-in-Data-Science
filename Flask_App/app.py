@@ -53,5 +53,4 @@ def careers():
 # Run the server
 if __name__ == "__main__":
     app.run()
-    #or, which one would I need?
-    #app.run(debug=True)
+
