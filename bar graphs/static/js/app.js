@@ -1,23 +1,5 @@
-// Make the Costume Funnel Graph for the desing of the page:
-// d3.csv("../../data/markerdata.csv").then((feature) => {
-
-//     var gd = document.getElementById('bubble');
-
-//     var data = [{type: 'funnel',
-//              y: ["NY","DE", "CA", "NJ", "AZ", "TX", "PA", "OH","IL", "FL"],
-//              x: [135677, 133550, 133371, 118688, 97349, 96186, 94676, 94093,
-//                 85004,77348 ],
-//              hoverinfo: 'percent total+x', opacity: 0.65, marker: {color: ["59D4E8", "DDB6C6", "A696C8", "67EACA", "94D2E6"],
-//              line: {"width": [4, 2, 2, 3, 1, 1], color: ["3E4E88", "606470", "3E4E88", "606470", "3E4E88"]}},
-//              connector: {line: {color: "royalblue", dash: "dot", width: 3}}}];
-
-//     var layout = {margin: {l: 100}, width: 600, height: 500}
-
-//         Plotly.newPlot('bubble', data, layout);
-
-
-// });
-d3.csv('../data/data_final.csv', function(err, rows){
+// Make the choropleth for the avg_salary nationwide
+d3.csv("../../data/data_final.csv").then((rows) => {
     function unpack(rows, key) {
         return rows.map(function(row) { return row[key]; });
     }
@@ -26,17 +8,17 @@ d3.csv('../data/data_final.csv', function(err, rows){
         type: 'choropleth',
         locationmode: 'USA-states',
         locations: unpack(rows, 'state'),
-        z: unpack(rows, 'Rating'),
+        z: unpack(rows, 'avg_Salary'),
         text: unpack(rows, 'state'),
         zmin: 0,
-        zmax: 5,
+        zmax: 150000,
         colorscale: [
             [0, 'rgb(242,240,247)'], [0.2, 'rgb(218,218,235)'],
             [0.4, 'rgb(188,189,220)'], [0.6, 'rgb(158,154,200)'],
             [0.8, 'rgb(117,107,177)'], [1, 'rgb(84,39,143)']
         ],
         colorbar: {
-            title: 'Rating',
+            title: 'Salary',
             thickness: 1.0
         },
         marker: {
@@ -66,20 +48,37 @@ d3.csv('../data/data_final.csv', function(err, rows){
 
 d3.csv("../../data/data_final.csv").then((feature) => {
 
-    var trace2 = {
-        x: feature.map(row => row["Founded"]),
-        y: feature.map(row => row["avg_Salary"]),
+    feature2 = feature.filter(row => row["Founded"] != "NULL")
+    
+      
+      var result = [];
+      feature2.reduce(function(res, value) {
+        if (!res[value.Founded]) {
+          res[value.Founded] = { Founded: value.Founded, qty: 0 };
+          result.push(res[value.Founded])
+        }
+        
+            res[value.Founded].qty += 1 ;
+        return res;
+        
+        
+      }, {});
+      result.sort( function(a,b){a["qty"] - b["qty"]}) ; 
+      console.log(result)
+      var trace2 = {
+        x: result.map(row => row["Founded"]),
+        y: result.map(row => row["qty"]),
         mode: 'markers',
         marker: {
             color: "orchid",
-            opacity: [0.4]
-        //     size: [40, 60, 80, 100]
+            opacity: [0.8]
             },
-        type: 'scatter'
+        type: 'bar'
         };
     
     var scatterData = [trace2];
     Plotly.newPlot('scatter', scatterData)
+
 
 
 });
@@ -115,6 +114,9 @@ function init(){
         var trace = {
             x: state_salary.map(row => row["avg_Salary"]),
             type: 'histogram',
+            marker: {
+                color: "grey",
+                opacity: [0.6]}
             
         };
         var data = [trace];
@@ -126,7 +128,7 @@ function init(){
 
 function optionChanged(dropdownvalue){ 
     console.log(dropdownvalue)
-    d3.csv("../../data/data_final.csv").then((feature) => {
+    d3.csv("../../data/data_final.csv", function(feature) {
         var state_salary = feature.filter(row => row["state"]== dropdownvalue)
         Plotly.restyle("myDiv", "x",[state_salary.map(row => row["avg_Salary"])]);
 });
