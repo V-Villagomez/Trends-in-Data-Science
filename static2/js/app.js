@@ -1,9 +1,9 @@
 // Make the choropleth for the avg_salary nationwide
-d3.csv("../../data/data_final.csv").then((rows) => {
+d3.csv("../../csvfiles/data/data_final.csv").then((rows) => {
     function unpack(rows, key) {
         return rows.map(function(row) { return row[key]; });
     }
-
+    
     var data = [{
         type: 'choropleth',
         locationmode: 'USA-states',
@@ -46,7 +46,7 @@ d3.csv("../../data/data_final.csv").then((rows) => {
 
 // Make a scatter plot demonstrating the salary over the years and the increase in data science jobs
 
-d3.csv("../../data/data_final.csv").then((feature) => {
+d3.csv("../../csvfiles/data/data_final.csv").then((feature) => {
 
     feature2 = feature.filter(row => row["Founded"] != "NULL")
     
@@ -75,9 +75,20 @@ d3.csv("../../data/data_final.csv").then((feature) => {
             },
         type: 'bar'
         };
+        var layout = {
+            
+            xaxis: {
+              title: 'years',
+            },
+            yaxis: {
+              
+              title: 'Number of Jobs'
+            },
+            title:'Number of Jobs per Year Nationwide'
+          };
     
     var scatterData = [trace2];
-    Plotly.newPlot('scatter', scatterData)
+    Plotly.newPlot('scatter', scatterData, layout)
 
 
 
@@ -88,7 +99,7 @@ d3.csv("../../data/data_final.csv").then((feature) => {
 
 // Make a Histogram for each state showing Salary distribution
 function init(){
-    d3.csv("../../data/data_final.csv").then((feature) => {
+    d3.csv("../../csvfiles/data/data_final.csv").then((feature) => {
         console.log(feature)
         
     
@@ -128,7 +139,7 @@ function init(){
 
 function optionChanged(dropdownvalue){ 
     console.log(dropdownvalue)
-    d3.csv("../../data/data_final.csv", function(feature) {
+    d3.csv("../../csvfiles/data/data_final.csv", function(feature) {
         var state_salary = feature.filter(row => row["state"]== dropdownvalue)
         Plotly.restyle("myDiv", "x",[state_salary.map(row => row["avg_Salary"])]);
 });
