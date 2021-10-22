@@ -1,5 +1,7 @@
+console.log("hello");
 // Make the choropleth for the avg_salary nationwide
-d3.csv("../../csvfiles/data/data_final.csv").then((rows) => {
+d3.csv("static/data/data_final.csv", function(rows) {
+    console.log(rows);
     function unpack(rows, key) {
         return rows.map(function(row) { return row[key]; });
     }
@@ -46,7 +48,7 @@ d3.csv("../../csvfiles/data/data_final.csv").then((rows) => {
 
 // Make a scatter plot demonstrating the salary over the years and the increase in data science jobs
 
-d3.csv("../../csvfiles/data/data_final.csv").then((feature) => {
+d3.csv("static/data/data_final.csv", function(feature) {
 
     feature2 = feature.filter(row => row["Founded"] != "NULL")
     
@@ -99,7 +101,7 @@ d3.csv("../../csvfiles/data/data_final.csv").then((feature) => {
 
 // Make a Histogram for each state showing Salary distribution
 function init(){
-    d3.csv("../../csvfiles/data/data_final.csv").then((feature) => {
+    d3.csv("static/data/data_final.csv", function(feature) {
         console.log(feature)
         
     
