@@ -49,7 +49,7 @@ d3.json("/db_url/careers").then(function(rows) {
 
 d3.json("/db_url/careers").then(function(feature) {
 
-    feature2 = feature.filter(row => row["company_founded"] != "NULL");
+    var feature2 = feature.filter(row => row["company_founded"] != "NULL");
     
       
       var result = [];
