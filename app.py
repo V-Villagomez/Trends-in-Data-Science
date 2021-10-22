@@ -28,7 +28,7 @@ def home():
     return render_template("index.html")
 
 # Define what to do when a user hits the /dashboard route
-app.route("/dashboard")
+@app.route("/dashboard")
 def dashboard():
     return render_template("dashboard.html")
 
