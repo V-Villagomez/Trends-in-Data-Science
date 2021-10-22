@@ -26,4 +26,4 @@ While the dataset of 3,800+ data scientist job listings contained information on
 The two datasets were cleaned up to be consistent with one another before being merged into the 'data_clean.csv' file.
 This finalized dataset was uploaded as a Heroku PostgreSQL database.
 
-<img src="{{ url_for('static', filename='static/images/avg_salary_by_state.png') }}", class="center">
+<img src="static/images/avg_salary_by_state.png">
