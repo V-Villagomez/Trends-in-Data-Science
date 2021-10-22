@@ -25,3 +25,5 @@ In this project, we observe the trend of growing data related jobs in the U.S. t
 While the dataset of 3,800+ data scientist job listings contained information on the location of the position in terms of city and state, we needed geo-coordinates of the states in order to plot out our observations through Plotly.
 The two datasets were cleaned up to be consistent with one another before being merged into the 'data_clean.csv' file.
 This finalized dataset was uploaded as a Heroku PostgreSQL database.
+
+<img src="{{ url_for('static', filename='static/images/avg_salary_by_state.png') }}", class="center">
