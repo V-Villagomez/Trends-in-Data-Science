@@ -8,9 +8,9 @@ d3.json("/db_url/careers").then(function(rows) {
     var data = [{
         type: 'choropleth',
         locationmode: 'USA-states',
-        locations: unpack(rows, 'state'),
-        z: unpack(rows, 'avg_Salary'),
-        text: unpack(rows, 'state'),
+        locations: unpack(rows, 'us_state'),
+        z: rows.map(row => parseInt(row["avg_salary"])),
+        text: unpack(rows, 'us_state'),
         zmin: 0,
         zmax: 150000,
         colorscale: [
@@ -49,17 +49,17 @@ d3.json("/db_url/careers").then(function(rows) {
 
 d3.json("/db_url/careers").then(function(feature) {
 
-    feature2 = feature.filter(row => row["Founded"] != "NULL")
+    feature2 = feature.filter(row => row["company_founded"] != "NULL");
     
       
       var result = [];
       feature2.reduce(function(res, value) {
-        if (!res[value.Founded]) {
-          res[value.Founded] = { Founded: value.Founded, qty: 0 };
-          result.push(res[value.Founded])
+        if (!res[value.company_founded]) {
+          res[value.company_founded] = { company_founded: value.company_founded, qty: 0 };
+          result.push(res[value.company_founded])
         }
         
-            res[value.Founded].qty += 1 ;
+            res[value.company_founded].qty += 1 ;
         return res;
         
         
@@ -67,7 +67,7 @@ d3.json("/db_url/careers").then(function(feature) {
       result.sort( function(a,b){a["qty"] - b["qty"]}) ; 
       console.log(result)
       var trace2 = {
-        x: result.map(row => row["Founded"]),
+        x: result.map(row => row["company_founded"]),
         y: result.map(row => row["qty"]),
         mode: 'markers',
         marker: {
@@ -105,7 +105,7 @@ function init(){
         
     
         var selector = d3.select("#selDataset"); 
-        let unique = [...new Set(feature.map(row => row["state"]))];
+        let unique = [...new Set(feature.map(row => row["us_state"]))];
         console.log(unique);
         unique.forEach((row) => {
             selector
@@ -118,13 +118,13 @@ function init(){
         
         var state = unique[0];
         
-        var state_salary = feature.filter(row => row["state"]== state);
+        var state_salary = feature.filter(row => row["us_state"]== state);
         
           
 
     
         var trace = {
-            x: state_salary.map(row => row["avg_Salary"]),
+            x: state_salary.map(row => row["avg_salary"]),
             type: 'histogram',
             marker: {
                 color: "grey",
@@ -141,8 +141,8 @@ function init(){
 function optionChanged(dropdownvalue){ 
     console.log(dropdownvalue)
     d3.json("/db_url/careers").then(function(feature) {
-        var state_salary = feature.filter(row => row["state"]== dropdownvalue)
-        Plotly.restyle("myDiv", "x",[state_salary.map(row => row["avg_Salary"])]);
+        var state_salary = feature.filter(row => row["us_state"]== dropdownvalue)
+        Plotly.restyle("myDiv", "x",[state_salary.map(row => row["avg_salary"])]);
 });
 };
 
