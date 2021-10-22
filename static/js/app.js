@@ -141,7 +141,7 @@ function init(){
 
 function optionChanged(dropdownvalue){ 
     console.log(dropdownvalue)
-    d3.csv("../../csvfiles/data/data_final.csv", function(feature) {
+    d3.csv("static/data/data_final.csv", function(feature) {
         var state_salary = feature.filter(row => row["state"]== dropdownvalue)
         Plotly.restyle("myDiv", "x",[state_salary.map(row => row["avg_Salary"])]);
 });
