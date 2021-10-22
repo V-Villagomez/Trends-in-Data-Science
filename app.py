@@ -10,21 +10,12 @@ from flask import (
 import pandas as pd
 #from sqlalchemy import create_engine
 from flask_sqlalchemy import SQLAlchemy
-<<<<<<< HEAD
-=======
-#from config import db_url
->>>>>>> e44103f617b63f513a428e2cb6242f966351f891
 
 # Create an app
 app = Flask(__name__)
 
 # Use flask_pymongo to set up mongo connection
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL', '').replace("postgres://", "postgresql://", 1)
-<<<<<<< HEAD
-=======
-
-# Remove tracking modifications
->>>>>>> e44103f617b63f513a428e2cb6242f966351f891
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
