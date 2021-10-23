@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS data_clean
 
 -- Create data_clean table for raw dataset
 CREATE TABLE data_clean (
+	id SERIAL PRIMARY KEY,
 	job_title VARCHAR,
 	rating NUMERIC,
 	company_name VARCHAR,
