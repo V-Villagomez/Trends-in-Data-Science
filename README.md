@@ -32,13 +32,20 @@ This finalized dataset was uploaded as a Heroku PostgreSQL database.
 <hr>
 
 ### Visualizations
-<img src="static/images/avg_salary_by_state.png" style="width:400px" class="center">
-Heatmap of average salary by state, the darker states representing states with higher average salaries compared to the lighter colored states.
+<p align="center">
+    <img src="static/images/avg_salary_by_state.png" style="width:400px" class="center">
+    <br>
+    Heatmap of average salary by state, the darker states representing states with higher average salaries compared to the lighter colored states.
+</p>
 <br>
-<img src="static/images/num_of_jobs.png" style="width:400px" class="center">
-Bar graph showing the number of jobs from 1600 to 2020, showing that data science jobs have been growing in number since the 1960s and have seen their most significant growths in 2020.
+<p align="center">
+    <img src="static/images/num_of_jobs.png" style="width:400px" class="center">
+    <br>
+    Bar graph showing the number of jobs from 1600 to 2020, showing that data science jobs have been growing in number since the 1960s and have seen their most significant growths in 2020.
+</p>
 <br>
 <p align="center">
     <img src="static/images/salary_by_state.png" style="width:400px" class="center">
+    <br>
     Histogram showing the average salary distribution among the most prominent states in data science.
 </p>
