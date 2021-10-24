@@ -11,6 +11,14 @@ In this project, we observe the trend of growing data related jobs in the U.S. t
 
 <hr>
 
+### Tools used:
+<ul>Flask</ul>
+<ul>SQLAlchemy</ul>
+<ul>WordCloud</ul>
+<ul>Pandas</ul>
+
+<hr>
+
 ### Datasets used:
 1. 3,884 job listings related to data science, containing information on:
     <ul>    
@@ -32,4 +40,20 @@ This finalized dataset was uploaded as a Heroku PostgreSQL database.
 <hr>
 
 ### Visualizations
-<img src="static/images/avg_salary_by_state.png" style="width:400px">
+<p align="center">
+    <img src="static/images/avg_salary_by_state.png" style="width:400px" class="center">
+    <br>
+    Heatmap of average salary by state, the darker states representing states with higher average salaries compared to the lighter colored states.
+</p>
+<br>
+<p align="center">
+    <img src="static/images/num_of_jobs.png" style="width:400px" class="center">
+    <br>
+    Bar graph showing the number of jobs from 1600 to 2020, showing that data science jobs have been growing in number since the 1960s and have seen their most significant growths in 2020.
+</p>
+<br>
+<p align="center">
+    <img src="static/images/salary_by_state.png" style="width:400px" class="center">
+    <br>
+    Histogram showing the average salary distribution among the most prominent states in data science.
+</p>
