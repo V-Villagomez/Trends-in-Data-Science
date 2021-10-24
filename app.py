@@ -43,7 +43,7 @@ def careers():
     rating = [result[0] for result in results]
     us_state = [result[1] for result in results]
     company_founded = [result[2] for result in results]
-    avg_salary = [result[2] for result in results]
+    avg_salary = [result[3] for result in results]
 
     # create a list of dictionaries to return the data
     data = [{'rating': a, 'us_state': b, 'company_founded': c, 'avg_salary': d} for a,b,c,d in zip(rating, us_state, company_founded, avg_salary)]
