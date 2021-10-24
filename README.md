@@ -11,6 +11,14 @@ In this project, we observe the trend of growing data related jobs in the U.S. t
 
 <hr>
 
+### Tools used:
+<ul>Flask</ul>
+<ul>SQLAlchemy</ul>
+<ul>WordCloud</ul>
+<ul>Pandas</ul>
+
+<hr>
+
 ### Datasets used:
 1. 3,884 job listings related to data science, containing information on:
     <ul>    
