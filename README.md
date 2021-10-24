@@ -57,3 +57,8 @@ This finalized dataset was uploaded as a Heroku PostgreSQL database.
     <br>
     Histogram showing the average salary distribution among the most prominent states in data science.
 </p>
+
+<hr>
+
+### Data Scientist Career Trends Webpages
+We encourage you to visit our wesbite: <i><a href="https://trends-in-data-science.herokuapp.com">Data Scientist Career Trends in the United States</a></i>.
