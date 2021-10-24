@@ -33,3 +33,4 @@ This finalized dataset was uploaded as a Heroku PostgreSQL database.
 
 ### Visualizations
 <img src="static/images/avg_salary_by_state.png" style="width:400px">
+Heatmap of average salary by state, the darker states representing states with higher average salaries compared to the lighter colored states.
