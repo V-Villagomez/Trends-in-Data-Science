@@ -30,7 +30,6 @@ d3.json("/db_url/careers").then(function(rows) {
         }
     }];
 
-
     var layout = {
         title: 'Data Science Jobs in USA',
         geo:{
@@ -45,8 +44,7 @@ d3.json("/db_url/careers").then(function(rows) {
 
 
 
-// Make a scatter plot demonstrating the salary over the years and the increase in data science jobs
-
+// Make a bar graph demonstrating the salary over the years and the increase in data science jobs
 d3.json("/db_url/careers").then(function(feature) {
 
     var feature2 = feature.filter(row => row["company_founded"] != "NULL");
@@ -61,9 +59,8 @@ d3.json("/db_url/careers").then(function(feature) {
         
             res[value.company_founded].qty += 1 ;
         return res;
-        
-        
       }, {});
+
       result.sort( function(a,b){a["qty"] - b["qty"]}) ; 
       console.log(result)
       var trace2 = {
@@ -76,26 +73,20 @@ d3.json("/db_url/careers").then(function(feature) {
             },
         type: 'bar'
         };
-        var layout = {
-            
+        var layout = {       
             xaxis: {
               title: 'years',
             },
-            yaxis: {
-              
-              title: 'Number of Jobs'
+            yaxis: {   
+              title: 'Number of Jobs',
+              range: [0, 120]
             },
             title:'Number of Jobs per Year Nationwide'
           };
     
     var scatterData = [trace2];
     Plotly.newPlot('scatter', scatterData, layout)
-
-
-
 });
-
-
 
 
 // Make a Histogram for each state showing Salary distribution
@@ -103,7 +94,6 @@ function init(){
     d3.json("/db_url/careers").then(function(feature) {
         console.log(feature)
         
-    
         var selector = d3.select("#selDataset"); 
         let unique = [...new Set(feature.map(row => row["us_state"]))];
         console.log(unique);
@@ -113,15 +103,10 @@ function init(){
               .text(row)
               .property("value", row);
           });
-       
-    
         
         var state = unique[0];
         
         var state_salary = feature.filter(row => row["us_state"]== state);
-        
-          
-
     
         var trace = {
             x: state_salary.map(row => row["avg_salary"]),
@@ -134,16 +119,15 @@ function init(){
         var data = [trace];
         Plotly.newPlot('myDiv', data);
     });
- 
-      
 }
+
 
 function optionChanged(dropdownvalue){ 
     console.log(dropdownvalue)
     d3.json("/db_url/careers").then(function(feature) {
         var state_salary = feature.filter(row => row["us_state"]== dropdownvalue)
         Plotly.restyle("myDiv", "x",[state_salary.map(row => row["avg_salary"])]);
-});
+    });
 };
 
 init();
